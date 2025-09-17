@@ -1,0 +1,166 @@
+$gender = "female";
+$x = $gender == "male" ? "Mr." ? : "Ms.";
+
+echo $gender == "male" ? "Mr." ? : "Ms.";
+
+echo $x;
+-----
+
+$color = "R" ?? "Red";
+echo $color;
+
+-----
+
+$students = array(
+ array("name"=> "Mary", "gender" => "Female", "age"=>16),
+ array("name"=> "Ray", "gender" => "Male", "age"=>17),
+ array("name"=> "Hardy", "gender" => "Male", "age"=>20),
+);
+
+
+
+foreach($students as $student){
+ //echo "Hello<br>";
+  echo "<h1>Name: ".$student["name"] . "<h1>";
+  //echo "Gender: ".$student["gender"] . "<br>";
+  echo  "<ul";
+          echo "<li>" .$student["gender"] .</li>";
+          echo "<li>" .$student["age"] .</li>";
+  echo "</ul>";
+}
+
+?>
+
+<?php foreach ($students as $student){ ?>
+  //<h1>hello</h1>
+    <h1><?php echo $student['name']; ?></h1>
+        <ul>
+            <li><?php echo $student['gender']; ?></li>
+            <li><?php echo $student['age']; ?></li>
+        </ul>
+ <?php> } ?>
+
+--------
+
+    <table>
+        <tr>
+            <th>Name</th>
+            <th>Gender</th>
+            <th>Age</th>
+        </tr>
+        <?php foreach ($students as $student){ ?>
+            <tr>
+                <td></td>
+            </tr>
+        <?php } ?>
+    </table>
+
+--------
+
+    <table>
+        <tr>
+            <th>Name</th>
+            <th>Gender</th>
+            <th>Age</th>
+        </tr>
+        <?php foreach ($students as $student){ ?>
+            <tr>
+                <td><?php echo $student['name']; ?></td>
+                <td><?php echo $student['gender']; ?></td>
+                <td><?php echo $student['age']; ?></td>
+            </tr>
+        <?php } ?>
+    </table>
+
+------
+
+  <table>
+        <tr>
+            <th>Name</th>
+            <th>Gender</th>
+            <th>Age</th>
+        </tr>
+        <?php foreach ($students as $student){ ?>
+            <?php foreach ($student as $value){ ?>
+                <tr>
+                    <td><?php echo $value; ?></td>
+                </tr>
+            <?php } ?>
+        <?php } ?>
+    </table>
+
+------
+create new form register_formhu.php
+
+<?php
+    $error_message = "";
+
+    if(isset($_REQUEST['btnSubmit'])){ 
+        if(empty($_REQUEST['fullname']) or empty($_REQUEST['email'])){
+            $error_message = "All inputs are required!";
+        } 
+    } 
+?>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <!-- get - send data thru url -->
+    <!-- post - send data thru http -->
+    <?php 
+        if($error_message != ""){
+            echo "Error: $error_message";
+        } 
+    ?>
+    <form action="register_form.php" method="get">
+        <label for="">Fullname: </label>
+        <input type="text" name="fullname">
+        <br>
+        <label for="">Email: </label>
+        <input type="email" name="email">
+        <br>
+        <input type="submit" name="btnSubmit">
+    </form>
+
+    <?php print_r($_REQUEST); ?>
+
+    
+
+</body>
+</html>
+
+
+--------
+
+//receive_page.php
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <!-- get - send data thru url -->
+    <!-- post - send data thru http -->
+    
+    <form action="receive_page.php" method="post">
+        <label for="">Fullname: </label>
+        <input type="text" name="fullname">
+        <br>
+        <label for="">Email: </label>
+        <input type="email" name="email">
+        <br>
+        <input type="submit" name="btnSubmit">
+    </form>
+</body>
+</html>
+
